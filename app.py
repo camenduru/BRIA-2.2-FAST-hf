@@ -83,7 +83,7 @@ with gr.Blocks(css=css) as demo:
         gr.HTML('''
           <p style="margin-bottom: 10px; font-size: 94%">
             This is a demo for 
-            <a href="https://huggingface.co/briaai/BRIA-2.2" target="_blank">BRIA 2.2 text-to-image </a>. 
+            <a href="https://huggingface.co/briaai/BRIA-LCM-2.2" target="_blank">BRIA LCM 2.2 text-to-image </a>. 
             BRIA 2.2 improve the realism of BRIA 2.0 while still trained on licensed data, and so provide full legal liability coverage for copyright and privacy infringement.
           </p>
         ''')
@@ -93,7 +93,7 @@ with gr.Blocks(css=css) as demo:
                 resolution = gr.Dropdown(value=resolutions[0], show_label=True, label="Resolution", choices=resolutions)
                 seed = gr.Textbox(label="Seed", value=-1)
                 submit_btn = gr.Button("Generate")
-        result = gr.Image(label="BRIA-2.2 Result")
+        result = gr.Image(label="BRIA-LCM-2.2 Result")
 
         # gr.Examples(
         #     examples = [ 
