@@ -27,7 +27,7 @@ pipe.unet = torch.compile(
 with torch.no_grad():
     outputs = pipe(
         prompt="an apple",
-        num_inference_steps=30,
+        num_inference_steps=8,
     )
 
     # This will avoid future compilations on different shapes
