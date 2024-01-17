@@ -12,15 +12,10 @@ class Dummy():
 resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280"] 
 
 # Load pipeline
-scheduler = EulerAncestralDiscreteScheduler(
-                beta_start=0.00085,
-                beta_end=0.012,
-                beta_schedule="scaled_linear",
-                num_train_timesteps=1000,
-                steps_offset=1
-            )
+
 unet = UNet2DConditionModel.from_pretrained("briaai/BRIA-LCM-2.2", torch_dtype=torch.float16)
 pipe = DiffusionPipeline.from_pretrained("briaai/BRIA-2.2", unet=unet, torch_dtype=torch.float16)
+pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 pipe = to("cuda")
 pipe.force_zeros_for_empty_prompt = False
 
