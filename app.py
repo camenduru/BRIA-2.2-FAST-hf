@@ -11,11 +11,7 @@ class Dummy():
 
 resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280"] 
 
-# Ng
-default_negative_prompt= "Logo,Watermark,Text,Ugly,Morbid,Extra fingers,Poorly drawn hands,Mutation,Blurry,Extra limbs,Gross proportions,Missing arms,Mutated hands,Long neck,Duplicate,Mutilated,Mutilated hands,Poorly drawn face,Deformed,Bad anatomy,Cloned face,Malformed limbs,Missing legs,Too many fingers"
-
 # Load pipeline
-model_id = "briaai/BRIA-2.2"
 scheduler = EulerAncestralDiscreteScheduler(
                 beta_start=0.00085,
                 beta_end=0.012,
@@ -23,10 +19,12 @@ scheduler = EulerAncestralDiscreteScheduler(
                 num_train_timesteps=1000,
                 steps_offset=1
             )
-pipe = StableDiffusionXLPipeline.from_pretrained(model_id, torch_dtype=torch.float16,scheduler=scheduler).to("cuda")
+unet = UNet2DConditionModel.from_pretrained("briaai/BRIA-LCM-2.2", torch_dtype=torch.float16)
+pipe = DiffusionPipeline.from_pretrained("briaai/BRIA-2.2", unet=unet, torch_dtype=torch.float16)
+pipe = to("cuda")
 pipe.force_zeros_for_empty_prompt = False
 
-print("Optimizing BRIA-2.2 - this could take a while")
+print("Optimizing BRIA-LCM-2.2 - this could take a while")
 t=time.time()
 pipe.unet = torch.compile(
     pipe.unet, mode="reduce-overhead", fullgraph=True # 600 secs compilation
@@ -68,7 +66,7 @@ def infer(prompt,negative_prompt,seed,resolution):
 
     w,h = resolution.split()
     w,h = int(w),int(h)
-    image = pipe(prompt,num_inference_steps=30, negative_prompt=negative_prompt,generator=generator,width=w,height=h).images[0]
+    image = pipe(prompt,num_inference_steps=8,generator=generator,width=w,height=h).images[0]
     print(f'gen time is {time.time()-t} secs')
     
     # Future
