@@ -1,5 +1,5 @@
 ---
-title: BRIA 2.2
+title: BRIA LCM 2.2
 emoji: 🌖
 colorFrom: blue
 colorTo: blue
