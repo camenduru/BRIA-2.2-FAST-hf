@@ -9,7 +9,7 @@ import time
 class Dummy():
     pass
 
-resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280"] 
+resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280" ] 
 
 # Load pipeline
 
