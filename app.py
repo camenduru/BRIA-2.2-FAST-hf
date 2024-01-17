@@ -2,7 +2,7 @@ import gradio as gr
 import os
 hf_token = os.environ.get("HF_TOKEN")
 import spaces
-from diffusers import StableDiffusionXLPipeline, UNet2DConditionModel, LCMScheduler
+from diffusers import DiffusionPipeline, UNet2DConditionModel, LCMScheduler
 import torch
 import time
 
