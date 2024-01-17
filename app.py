@@ -84,7 +84,7 @@ with gr.Blocks(css=css) as demo:
           <p style="margin-bottom: 10px; font-size: 94%">
             This is a demo for 
             <a href="https://huggingface.co/briaai/BRIA-LCM-2.2" target="_blank">BRIA LCM 2.2 text-to-image </a>. 
-            BRIA 2.2 improve the realism of BRIA 2.0 while still trained on licensed data, and so provide full legal liability coverage for copyright and privacy infringement.
+            BRIA LCM 2.2 is a fast LCM version of  BRIA 2.2 while still trained on licensed data, and so provide full legal liability coverage for copyright and privacy infringement.
           </p>
         ''')
         with gr.Group():
