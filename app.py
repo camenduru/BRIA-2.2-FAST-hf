@@ -46,7 +46,7 @@ with torch.no_grad():
 print(f"Optimizing finished successfully after {time.time()-t} secs")
 
 @spaces.GPU(enable_queue=True)
-def infer(prompt,negative_prompt,seed,resolution):
+def infer(prompt,seed,resolution):
     print(f"""
     —/n
     {prompt}
@@ -84,7 +84,7 @@ css = """
 """
 with gr.Blocks(css=css) as demo:
     with gr.Column(elem_id="col-container"):
-        gr.Markdown("## BRIA 2.2 Beta")
+        gr.Markdown("## BRIA 2.2 LCM Beta")
         gr.HTML('''
           <p style="margin-bottom: 10px; font-size: 94%">
             This is a demo for 
@@ -97,7 +97,6 @@ with gr.Blocks(css=css) as demo:
                 prompt_in = gr.Textbox(label="Prompt", value="A smiling man with wavy brown hair and a trimmed beard")
                 resolution = gr.Dropdown(value=resolutions[0], show_label=True, label="Resolution", choices=resolutions)
                 seed = gr.Textbox(label="Seed", value=-1)
-                negative_prompt = gr.Textbox(label="Negative Prompt", value=default_negative_prompt)
                 submit_btn = gr.Button("Generate")
         result = gr.Image(label="BRIA-2.2 Result")
 
@@ -122,7 +121,6 @@ with gr.Blocks(css=css) as demo:
         fn = infer,
         inputs = [
             prompt_in,
-            negative_prompt,
             seed,
             resolution
         ],
