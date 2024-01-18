@@ -15,6 +15,7 @@ resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280" ]
 
 unet = UNet2DConditionModel.from_pretrained("briaai/BRIA-LCM-2.2", torch_dtype=torch.float16)
 pipe = DiffusionPipeline.from_pretrained("briaai/BRIA-2.2", unet=unet, torch_dtype=torch.float16)
+del unet
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 pipe = pipe.to("cuda")
 pipe.force_zeros_for_empty_prompt = False
