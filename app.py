@@ -11,7 +11,7 @@ class Dummy():
 
 resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280" ] 
 
-# Load pipeline
+# Load pipeline 
 
 unet = UNet2DConditionModel.from_pretrained("briaai/BRIA-LCM-2.2", torch_dtype=torch.float16)
 pipe = DiffusionPipeline.from_pretrained("briaai/BRIA-2.2", unet=unet, torch_dtype=torch.float16)
