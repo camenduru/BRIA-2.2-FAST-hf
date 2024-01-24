@@ -13,7 +13,7 @@ resolutions = ["1024 1024","1280 768","1344 768","768 1344","768 1280" ]
 
 # Load pipeline 
 
-unet = UNet2DConditionModel.from_pretrained("briaai/BRIA-LCM-2.2", torch_dtype=torch.float16)
+unet = UNet2DConditionModel.from_pretrained("briaai/BRIA-2.2-FAST", torch_dtype=torch.float16)
 pipe = DiffusionPipeline.from_pretrained("briaai/BRIA-2.2", unet=unet, torch_dtype=torch.float16)
 del unet
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
@@ -80,12 +80,12 @@ css = """
 """
 with gr.Blocks(css=css) as demo:
     with gr.Column(elem_id="col-container"):
-        gr.Markdown("## BRIA 2.2 LCM Beta")
+        gr.Markdown("## BRIA 2.2 FAST")
         gr.HTML('''
           <p style="margin-bottom: 10px; font-size: 94%">
             This is a demo for 
-            <a href="https://huggingface.co/briaai/BRIA-LCM-2.2" target="_blank">BRIA LCM 2.2 text-to-image </a>. 
-            BRIA LCM 2.2 is a fast LCM version of  BRIA 2.2 while still trained on licensed data, and so provide full legal liability coverage for copyright and privacy infringement.
+            <a href="https://huggingface.co/briaai/BRIA-2.2-FAST" target="_blank">BRIA 2.2 FAST </a>. 
+            This is a fast version of BRIA 2.2 text-to-image model, still trained on licensed data, and so provide full legal liability coverage for copyright and privacy infringement.
           </p>
         ''')
         with gr.Group():
