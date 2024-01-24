@@ -20,7 +20,7 @@ pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 pipe = pipe.to("cuda")
 pipe.force_zeros_for_empty_prompt = False
 
-print("Optimizing BRIA-LCM-2.2 - this could take a while")
+print("Optimizing BRIA 2.2 FAST - this could take a while")
 t=time.time()
 pipe.unet = torch.compile(
     pipe.unet, mode="reduce-overhead", fullgraph=True # 600 secs compilation
@@ -94,7 +94,7 @@ with gr.Blocks(css=css) as demo:
                 resolution = gr.Dropdown(value=resolutions[0], show_label=True, label="Resolution", choices=resolutions)
                 seed = gr.Textbox(label="Seed", value=-1)
                 submit_btn = gr.Button("Generate")
-        result = gr.Image(label="BRIA-LCM-2.2 Result")
+        result = gr.Image(label="BRIA 2.2 FAST Result")
 
         # gr.Examples(
         #     examples = [ 
