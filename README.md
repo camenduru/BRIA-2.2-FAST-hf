@@ -1,5 +1,5 @@
 ---
-title: BRIA 2.2 FAS
+title: BRIA 2.2 FAST
 emoji: ⚡
 colorFrom: purple
 colorTo: purple
