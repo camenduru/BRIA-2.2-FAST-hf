@@ -1,8 +1,8 @@
 ---
-title: BRIA LCM 2.2
-emoji: 🌖
-colorFrom: blue
-colorTo: blue
+title: BRIA 2.2 FAS
+emoji: ⚡
+colorFrom: purple
+colorTo: purple
 sdk: gradio
 sdk_version: 4.13.0
 app_file: app.py
